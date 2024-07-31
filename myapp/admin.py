@@ -26,3 +26,7 @@ class StudentAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     ordering = ('name',)
     filter_horizontal = ('categories',)  # Manages ManyToMany relationship in admin
+    
+    def display_categories(self, obj):
+        return ", ".join([cat.name for cat in obj.categories.all()])
+    display_categories.short_description = 'Categories'
