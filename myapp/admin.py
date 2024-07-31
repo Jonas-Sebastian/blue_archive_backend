@@ -22,7 +22,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('name',)
+    list_display = ('name', 'display_categories')
     search_fields = ('name',)
     ordering = ('name',)
     filter_horizontal = ('categories',)  # Manages ManyToMany relationship in admin
