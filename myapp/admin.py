@@ -1,13 +1,28 @@
 from django.contrib import admin
-from .models import TotalAssault, GrandAssault
+from .models import TotalAssault, GrandAssault, Category, Student
 
-# Register TotalAssault
-admin.site.register(TotalAssault)
+@admin.register(TotalAssault)
+class TotalAssaultAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+    ordering = ('name',)
 
-# Register GrandAssault
 @admin.register(GrandAssault)
 class GrandAssaultAdmin(admin.ModelAdmin):
     list_display = ('name', 'color', 'get_color_display')
     list_filter = ('color',)
     search_fields = ('name',)
     ordering = ('name',)
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+    ordering = ('name',)
+
+@admin.register(Student)
+class StudentAdmin(admin.ModelAdmin):
+    list_display = ('name',)
+    search_fields = ('name',)
+    ordering = ('name',)
+    filter_horizontal = ('categories',)  # Manages ManyToMany relationship in admin

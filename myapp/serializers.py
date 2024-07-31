@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from .models import TotalAssault
-from .models import GrandAssault
+from .models import TotalAssault, GrandAssault, Category, Student
 
 class TotalAssaultSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,3 +12,15 @@ class GrandAssaultSerializer(serializers.ModelSerializer):
     class Meta:
         model = GrandAssault
         fields = ['id', 'name', 'color', 'color_display']
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ['id', 'name']
+
+class StudentSerializer(serializers.ModelSerializer):
+    categories = CategorySerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Student
+        fields = ['id', 'name', 'categories']

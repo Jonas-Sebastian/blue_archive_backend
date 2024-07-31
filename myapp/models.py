@@ -24,3 +24,21 @@ class GrandAssault(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Category(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+
+    #Changes how the name appears in Django Admin
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.name
+
+class Student(models.Model):
+    name = models.CharField(max_length=200)
+    categories = models.ManyToManyField(Category, related_name='students', blank=True)
+
+    def __str__(self):
+        return self.name
