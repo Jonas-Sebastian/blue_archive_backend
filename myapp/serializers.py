@@ -8,6 +8,8 @@ class TotalAssaultSerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 class GrandAssaultSerializer(serializers.ModelSerializer):
+    color_display = serializers.CharField(source='get_color_display', read_only=True)
+
     class Meta:
         model = GrandAssault
-        fields = ['id', 'name']
+        fields = ['id', 'name', 'color', 'color_display']

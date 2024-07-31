@@ -7,7 +7,20 @@ class TotalAssault(models.Model):
         return self.name
     
 class GrandAssault(models.Model):
+    COLOR_CHOICES = [
+        ('Red', 'Explosive'),
+        ('Yellow', 'Piercing'),
+        ('Blue', 'Mystic'),
+        ('Purple', 'Sonic'),
+        ('Normal', 'Normal'),
+    ]
+
     name = models.CharField(max_length=200)
+    color = models.CharField(
+        max_length=20,
+        choices=COLOR_CHOICES,
+        default='Normal',  # Set 'Normal' as the default value
+    )
 
     def __str__(self):
         return self.name
