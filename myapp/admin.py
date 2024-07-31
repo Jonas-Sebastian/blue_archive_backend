@@ -22,11 +22,19 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('name', 'display_categories')
+    list_display = ('name', 'display_categories', 'display_total_assaults', 'display_grand_assaults')
     search_fields = ('name',)
     ordering = ('name',)
-    filter_horizontal = ('categories',)  # Manages ManyToMany relationship in admin
-    
+    filter_horizontal = ('categories', 'total_assaults', 'grand_assaults')
+
     def display_categories(self, obj):
         return ", ".join([cat.name for cat in obj.categories.all()])
     display_categories.short_description = 'Categories'
+
+    def display_total_assaults(self, obj):
+        return ", ".join([assault.name for assault in obj.total_assaults.all()])
+    display_total_assaults.short_description = 'Total Assaults'
+
+    def display_grand_assaults(self, obj):
+        return ", ".join([assault.name for assault in obj.grand_assaults.all()])
+    display_grand_assaults.short_description = 'Grand Assaults'

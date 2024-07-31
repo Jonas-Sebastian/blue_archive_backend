@@ -20,7 +20,9 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class StudentSerializer(serializers.ModelSerializer):
     categories = CategorySerializer(many=True, read_only=True)
+    total_assaults = TotalAssaultSerializer(many=True, read_only=True)
+    grand_assaults = GrandAssaultSerializer(many=True, read_only=True)
 
     class Meta:
         model = Student
-        fields = ['id', 'name', 'categories']
+        fields = ['id', 'name', 'categories', 'total_assaults', 'grand_assaults']

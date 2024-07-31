@@ -39,6 +39,8 @@ class Category(models.Model):
 class Student(models.Model):
     name = models.CharField(max_length=200)
     categories = models.ManyToManyField(Category, related_name='students', blank=True)
+    total_assaults = models.ManyToManyField(TotalAssault, related_name='students_total_assault', blank=True)
+    grand_assaults = models.ManyToManyField(GrandAssault, related_name='students_grand_assault', blank=True)
 
     def __str__(self):
         return self.name
